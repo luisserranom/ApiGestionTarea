@@ -27,9 +27,11 @@ class ApiGestionTareaApplicationTests {
 		try (Connection connection = dataSource.getConnection()) {
 			assertNotNull(connection, "La conexión de la BD existe.");
 			assertTrue(!connection.isClosed(), "La conexión a la bd esta abierta");
+			System.out.println("¡¡¡Conexión exitosa a la base de datos.!!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			assertTrue(false, "No se pudo conectar a la bd.");
+			System.out.println("Conexión Fallida ");
 		}
 	}
 }
