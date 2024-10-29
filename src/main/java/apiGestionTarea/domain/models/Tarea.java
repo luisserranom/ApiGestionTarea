@@ -32,6 +32,10 @@ public class Tarea {
         this.estado = estado;
     }
 
+    public Tarea() {
+
+    }
+
     public Long getId() {
         return id;
     }
