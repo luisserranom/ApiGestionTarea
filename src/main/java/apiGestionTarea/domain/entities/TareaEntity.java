@@ -1,7 +1,6 @@
-package apiGestionTarea.infrastructure.entities;
+package apiGestionTarea.domain.entities;
 
 import apiGestionTarea.domain.models.Tarea;
-import apiGestionTarea.domain.ports.in.CrearTareaUseCase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,11 +36,11 @@ public class TareaEntity  {
         this.nombrePersonal = nombrePersonal;
         this.primerApellidoPersonal = primerApellidoPersonal;
         this.segundoApellidoPersonal = segundoApellidoPersonal;
-        this.fechaCreacion = fechaCreacion;
+        this.fechaCreacion = LocalDateTime.now();
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.activo = activo;
-        this.estado = estado;
+        this.estado = "Por Hacer";
     }
 
     public static TareaEntity fromDomainModel(Tarea tarea){

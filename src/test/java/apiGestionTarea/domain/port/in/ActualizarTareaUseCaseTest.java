@@ -1,7 +1,7 @@
 package apiGestionTarea.domain.port.in;
 
 import apiGestionTarea.domain.models.Tarea;
-import apiGestionTarea.domain.ports.in.ActualizarTareaUseCase;
+import apiGestionTarea.domain.ports.in.IActualizarTareaUseCase;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public interface ActualizarTareaUseCaseTest {
 
     // Se debe proporcionar un método de configuración que devuelva la instancia de ActualizarTareaUseCase
-    default ActualizarTareaUseCase crearMockActualizarTareaUseCase() {
-        return mock(ActualizarTareaUseCase.class);
+    default IActualizarTareaUseCase crearMockActualizarTareaUseCase() {
+        return mock(IActualizarTareaUseCase.class);
     }
 
     @Test
     default void testActualizarTareaExistente() {
         // Arrange
-        ActualizarTareaUseCase actualizarTareaUseCase = crearMockActualizarTareaUseCase();
+        IActualizarTareaUseCase actualizarTareaUseCase = crearMockActualizarTareaUseCase();
 
         Long tareaId = 1L;
         Tarea tareaActualizada = new Tarea();
@@ -39,7 +39,7 @@ public interface ActualizarTareaUseCaseTest {
     @Test
     default void testActualizarTareaInexistente() {
         // Arrange
-        ActualizarTareaUseCase actualizarTareaUseCase = crearMockActualizarTareaUseCase();
+        IActualizarTareaUseCase actualizarTareaUseCase = crearMockActualizarTareaUseCase();
 
         Long tareaId = 2L;
         Tarea tareaActualizada = new Tarea();

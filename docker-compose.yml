@@ -1,0 +1,17 @@
+version: '1'
+services:
+  mysql:
+    container_name: luis-mysql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: userLuis
+      MYSQL_PASSWORD: 12345
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

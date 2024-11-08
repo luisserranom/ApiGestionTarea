@@ -1,6 +1,6 @@
-package apiGestionTarea.infrastructure.repositories;
+package apiGestionTarea.domain.repositories;
 
-import apiGestionTarea.infrastructure.entities.TareaEntity;
+import apiGestionTarea.domain.entities.TareaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

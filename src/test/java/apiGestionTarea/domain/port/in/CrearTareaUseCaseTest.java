@@ -1,16 +1,8 @@
 package apiGestionTarea.domain.port.in;
 
-import apiGestionTarea.application.useCases.CrearTareaUseCaseImpl;
-import apiGestionTarea.domain.models.Tarea;
-import apiGestionTarea.domain.ports.out.TareaRepositoryPort;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public interface CrearTareaUseCaseTest {
 

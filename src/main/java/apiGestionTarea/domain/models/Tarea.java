@@ -123,4 +123,7 @@ public class Tarea {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public void setMensaje(String s) {
+    }
 }
