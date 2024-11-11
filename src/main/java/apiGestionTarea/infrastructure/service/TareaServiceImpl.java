@@ -4,16 +4,16 @@ import apiGestionTarea.domain.models.Tarea;
 import apiGestionTarea.domain.repositories.ITareaRepository;
 import apiGestionTarea.domain.service.ITareaService;
 import apiGestionTarea.infrastructure.exceptions.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
+import apiGestionTarea.infrastructure.exceptions.StateIsEmptyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TareaServiceImpl implements ITareaService {
     private final ITareaRepository tareaRepository;
-
 
 
     public TareaServiceImpl(ITareaRepository tareaRepository) {
@@ -22,8 +22,10 @@ public class TareaServiceImpl implements ITareaService {
 
     private Tarea buscarTarea(Long id) {
         return tareaRepository.buscarPorId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Tarea No Encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Tarea no encontrada"));
     }
+
+
 
 
     @Override
@@ -37,8 +39,8 @@ public class TareaServiceImpl implements ITareaService {
     }
 
     @Override
-    public List<Tarea> listarTareas() {
-        return tareaRepository.listarTareas();
+    public Page<Tarea> listarTareas(Pageable pageable) {
+        return tareaRepository.listarTareas(pageable);
     }
 
 
@@ -49,5 +51,15 @@ public class TareaServiceImpl implements ITareaService {
     }
 
 
+    @Override
+    public Tarea actualizarEstadoTarea(Long id, String nuevoEstado) {
+        buscarTarea(id);
+        if (nuevoEstado != null && !nuevoEstado.isEmpty() && !nuevoEstado.isBlank())  {
+            tareaRepository.actualizarEstadoTarea(id, nuevoEstado);
+            return  buscarTarea(id);
+        }
+         throw new StateIsEmptyException("Estado vacio");
+
+    }
 
 }

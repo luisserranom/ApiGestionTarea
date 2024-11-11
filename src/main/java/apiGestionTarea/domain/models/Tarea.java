@@ -1,6 +1,13 @@
 package apiGestionTarea.domain.models;
 
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Tarea {
 
@@ -10,15 +17,27 @@ public class Tarea {
     private String nombrePersonal;
     private String primerApellidoPersonal;
     private String SegundoApellidoPersonal;
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaCreacion;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaInicio;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaFin;
+
     private boolean activo;
     private String estado;
 
 
 
-    public Tarea(Long id, String titulo, String descripcion, String nombrePersonal, String primerApellidoPersonal, String segundoApellidoPersonal, LocalDateTime fechaCreacion, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean activo, String estado) {
+
+
+    public Tarea(Long id, String titulo, String descripcion, String nombrePersonal, String primerApellidoPersonal, String segundoApellidoPersonal, Date fechaCreacion, Date fechaInicio, Date fechaFin, boolean activo, String estado) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -35,6 +54,7 @@ public class Tarea {
     public Tarea() {
 
     }
+
 
     public Long getId() {
         return id;
@@ -84,27 +104,27 @@ public class Tarea {
         SegundoApellidoPersonal = segundoApellidoPersonal;
     }
 
-    public LocalDateTime getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDateTime getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDateTime fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 

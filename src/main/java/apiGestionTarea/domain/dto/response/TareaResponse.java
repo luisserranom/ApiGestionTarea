@@ -3,6 +3,8 @@ package apiGestionTarea.domain.dto.response;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Data
 
 public class TareaResponse {
@@ -17,7 +19,7 @@ public class TareaResponse {
     private String estado;
 
 
-    public TareaResponse(Long id, String titulo, String descripcion, String nombrePersonal, String primerApellidoPersonal, String segundoApellidoPersonal, LocalDateTime fechaCreacion, boolean activo, String estado) {
+    public TareaResponse(Long id, String titulo, String descripcion, String nombrePersonal, String primerApellidoPersonal, String segundoApellidoPersonal, Date fechaCreacion, boolean activo, String estado) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;

@@ -1,12 +1,14 @@
 package apiGestionTarea.domain.entities;
 
 import apiGestionTarea.domain.models.Tarea;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 
 @Entity
 public class TareaEntity  {
@@ -18,25 +20,37 @@ public class TareaEntity  {
     private String nombrePersonal;
     private String primerApellidoPersonal;
     private String segundoApellidoPersonal;
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaCreacion;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaInicio;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaFin;
     private boolean activo;
     private String estado;
+
+
+
 
     public TareaEntity() {
 
     }
 
 
-    public TareaEntity(Long id, String titulo, String descripcion, String nombrePersonal, String primerApellidoPersonal, String segundoApellidoPersonal, LocalDateTime fechaCreacion, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean activo,String estado) {
+    public TareaEntity(Long id, String titulo, String descripcion, String nombrePersonal, String primerApellidoPersonal, String segundoApellidoPersonal, Date fechaCreacion, Date fechaInicio, Date fechaFin, boolean activo,String estado) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.nombrePersonal = nombrePersonal;
         this.primerApellidoPersonal = primerApellidoPersonal;
         this.segundoApellidoPersonal = segundoApellidoPersonal;
-        this.fechaCreacion = LocalDateTime.now();
+        this.fechaCreacion = fechaInicio;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.activo = activo;
@@ -53,6 +67,7 @@ public class TareaEntity  {
     public Tarea toDomainModel(){
         return new Tarea(id,titulo,descripcion,nombrePersonal,primerApellidoPersonal,segundoApellidoPersonal,fechaCreacion, fechaInicio,fechaFin,activo,estado);
     }
+
 
 
 
@@ -104,27 +119,27 @@ public class TareaEntity  {
         this.segundoApellidoPersonal = segundoApellidoPersonal;
     }
 
-    public LocalDateTime getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDateTime getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDateTime fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
