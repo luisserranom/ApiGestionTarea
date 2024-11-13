@@ -1,4 +1,4 @@
-package apiGestionTarea.infrastructure.exceptions;
+package apiGestionTarea.domain.exceptions;
 
 import apiGestionTarea.domain.dto.response.RespuestaError;
 import org.springframework.http.HttpStatus;

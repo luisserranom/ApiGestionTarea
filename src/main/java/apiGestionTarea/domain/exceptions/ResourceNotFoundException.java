@@ -1,4 +1,4 @@
-package apiGestionTarea.infrastructure.exceptions;
+package apiGestionTarea.domain.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

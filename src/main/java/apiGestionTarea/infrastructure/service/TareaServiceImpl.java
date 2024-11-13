@@ -3,13 +3,13 @@ package apiGestionTarea.infrastructure.service;
 import apiGestionTarea.domain.models.Tarea;
 import apiGestionTarea.domain.repositories.ITareaRepository;
 import apiGestionTarea.domain.service.ITareaService;
-import apiGestionTarea.infrastructure.exceptions.ResourceNotFoundException;
-import apiGestionTarea.infrastructure.exceptions.StateIsEmptyException;
+import apiGestionTarea.domain.exceptions.ResourceNotFoundException;
+import apiGestionTarea.domain.exceptions.StateIsEmptyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Date;
 
 @Service
 public class TareaServiceImpl implements ITareaService {
@@ -53,13 +53,17 @@ public class TareaServiceImpl implements ITareaService {
 
     @Override
     public Tarea actualizarEstadoTarea(Long id, String nuevoEstado) {
-        buscarTarea(id);
+        Tarea tarea = buscarTarea(id);
         if (nuevoEstado != null && !nuevoEstado.isEmpty() && !nuevoEstado.isBlank())  {
+            if (nuevoEstado.equals("EN PROCESO")) {
+                tarea.setFechaInicio(new Date());
+            } else if (nuevoEstado.equals("FINALIZADO")) {
+                tarea.setFechaFin(new Date());
+            }
             tareaRepository.actualizarEstadoTarea(id, nuevoEstado);
-            return  buscarTarea(id);
+            return tarea;
         }
-         throw new StateIsEmptyException("Estado vacio");
-
+        throw new StateIsEmptyException("Estado vacio");
     }
 
 }
